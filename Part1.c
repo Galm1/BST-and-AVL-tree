@@ -21,6 +21,21 @@ struct Node* newNode(int data)
 	return (node);
 }
 
+int max(int a, int b) {
+    return (a > b) ? a : b;
+}
+
+int height(struct Node* node) {
+    if (node == NULL)
+        return 0;
+    return node->height;
+}
+
+int getBalance(struct Node* node) {
+    if (node == NULL)
+        return 0;
+    return height(node->left) - height(node->right);
+}
 
 
 
