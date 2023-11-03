@@ -37,6 +37,30 @@ int getBalence(struct Node* node){
 	} return height(node->left) - height (node->right);
 }
 
+struct Node* leftRotate(struct Node* x){
+	struct Node* y=x->right;
+	struct Node* z=y->left;
+	y->left=x;
+	x->right=z;
+	
+	x->height = max(height(x->left), height(x->right) + 1);
+	x->height = max(height(y->left), height(y->right) + 1);
+	return y;
+
+}
+
+struct Node* rightRotate(struct Node* y){
+	struct Node* x=y->left;
+	struct Node* z=x->right;
+	x->right=y;
+	y->left=z;
+	
+	y->height = max(height(y->left), height(y->right)) +1;
+	x->height = max(height(x->left), height(x->right)) +1;
+	return x;
+}
+
+
 struct Node* insert(struct Node* node, int data){
 	if (node == NULL){
 		return newNode(data);
