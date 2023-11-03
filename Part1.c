@@ -17,7 +17,7 @@ struct Node* newNode(int data)
 	node->data = data;
 	node->left = NULL;
 	node->right = NULL;
-	node->height = 0;
+	node->height = 1;
 	return (node);
 }
 
@@ -31,10 +31,18 @@ int height(struct Node* node) {
     return node->height;
 }
 
-int getBalance(struct Node* node) {
-    if (node == NULL)
-        return 0;
-    return height(node->left) - height(node->right);
+int getBalence(struct Node* node){
+	if (node == NULL){
+		return 0;
+	} return height(node->left) - height (node->right);
+}
+
+struct Node* insert(struct Node* node, int data){
+	if (node == NULL){
+		return newNode(data);
+	} else if (data > node->data){
+		node->right = insert(node->right, data);
+	} else return node;
 }
 
 
