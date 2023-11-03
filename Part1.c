@@ -67,6 +67,30 @@ struct Node* insert(struct Node* node, int data){
 	} else if (data > node->data){
 		node->right = insert(node->right, data);
 	} else return node;
+	
+	node->height = 1+max(height(node->left), height(node->right));
+	
+	int balance = getBalence(node);
+	
+	if (balance > 1 && data < node->left->data){ //left left
+		return rightRotate(node);
+	} 
+	
+	if (balance < -1 && data > node->right->data){ //right right
+		return leftRotate(node);
+	}
+	
+	if (balance > 1 && data > node->left->data){ //left right
+		node->left = leftRotate(node->left);
+		return rightRotate(node);
+	}
+	
+	if (balance < -1 && data < node->right->data){ //right left
+		node->right - rightRotate(node->right);
+		return leftRotate(node);
+	}
+	
+	return node;
 }
 
 
