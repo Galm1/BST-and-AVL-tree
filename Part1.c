@@ -93,7 +93,13 @@ struct Node* insert(struct Node* node, int data){
 	return node;
 }
 
-
+void preOrder (struct Node* root){
+	if (root != NULL){
+		printf("%d", root->data);
+		preOrder(root->left);
+		preOrder(root->right);
+	}
+}
 
 
 int main(){
