@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int arrayPD[5] = {1,2,3,4,5};
+int arrayPredetermined[5] = {1,2,3,4,5};
 
 struct Node 
 {
@@ -95,7 +95,7 @@ struct Node* insert(struct Node* node, int data){
 
 void preOrder (struct Node* root){
 	if (root != NULL){
-		printf("%d", root->data);
+		printf("%d ", root->data);
 		preOrder(root->left);
 		preOrder(root->right);
 	}
@@ -106,9 +106,22 @@ int main(){
 	
 	
 	for (int i = 0; i < 5; i++){
-		printf("%d", arrayPD[i]);
+		printf("%d", arrayPredetermined[i]);
 	}
 	
+	int n =  sizeof(arrayPredetermined)/sizeof(arrayPredetermined[0]);
+	struct Node* root = NULL;
+	
+	printf("BST: ");
+	for (int i=0; i<n; i++){
+		root = insert(root, arrayPredetermined[i]);
+		printf("%d ", arrayPredetermined[i]);
+	}
+	
+	printf("AVL: ");
+	preOrder(root);
+	
+	return 0;
 	
 	
 }
