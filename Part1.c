@@ -1,5 +1,5 @@
-// NAME: FIRST LAST
-// INFO1234: info1234 
+// NAME: first last
+// INFO1234: info
 
 #include <stdio.h> // libraries 
 #include <stdlib.h>
@@ -35,7 +35,7 @@ int height(struct Node* node) {  // gives us the hieght of a node to work with l
     return node->height;
 }
 
-int getBalence(struct Node* node){ // calculates balance factor for node
+int getBalance(struct Node* node){ // calculates balance factor for node
 	if (node == NULL){
 		return 0;
 	} return height(node->left) - height (node->right); // find differnce between height of left subtree and right subtree.
@@ -48,7 +48,7 @@ struct Node* leftRotate(struct Node* x){ // left rotate on node x for AVL
 	x->right=z;
 	
 	x->height = max(height(x->left), height(x->right) + 1); // adjust height
-	x->height = max(height(y->left), height(y->right) + 1);
+	y->height = max(height(y->left), height(y->right) + 1);
 	return y;
 
 }
@@ -74,7 +74,7 @@ struct Node* insert(struct Node* node, int data){ // here is where we put the no
 	
 	node->height = 1+max(height(node->left), height(node->right));
 	
-	int balance = getBalence(node);
+	int balance = getBalance(node);
 	
 	if (balance > 1 && data < node->left->data){ //left left
 		return rightRotate(node);
